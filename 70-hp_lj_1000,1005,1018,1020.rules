@@ -10,56 +10,60 @@
 
 
 ## OLD VERSION
+#ACTION!="add", GOTO="foo2xxx_end"
+#KERNEL!="lp?", GOTO="foo2xxx_end"
+#SUBSYSTEM!="usbmisc", GOTO="foo2xxx_end"
 ## Own udev rule for HP Laserjet 1000
-#ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="0517", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihp1000.dl > $tempnode'"
+#ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="0517", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihp1000.dl > $tempnode'"
 ## Own udev rule for HP Laserjet 1005
-#ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="1317", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihp1005.dl > $tempnode'"
+#ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="1317", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihp1005.dl > $tempnode'"
 ## Own udev rule for HP Laserjet 1018
-#ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="4117", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihp1018.dl > $tempnode'"
+#ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="4117", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihp1018.dl > $tempnode'"
 ## Own udev rule for HP Laserjet 1020
-#ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="2b17", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihp1020.dl > $tempnode'"
+#ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="2b17", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihp1020.dl > $tempnode'"
 ## Own udev rule for HP Laserjet P1005
-#ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="3d17", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihpP1005.dl > $tempnode'"
+#ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="3d17", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihpP1005.dl > $tempnode'"
 ## Own udev rule for HP Laserjet P1006
-#ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="3e17", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihpP1006.dl > $tempnode'"
+#ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="3e17", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihpP1006.dl > $tempnode'"
 ## Own udev rule for HP Laserjet P1007
-#ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="4817", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihpP1005.dl > $tempnode'"
+#ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="4817", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihpP1005.dl > $tempnode'"
 ## Own udev rule for HP Laserjet P1008
-#ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="4917", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihpP1006.dl > $tempnode'"
+#ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="4917", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihpP1006.dl > $tempnode'"
 ## Own udev rule for HP Laserjet P1505
-#ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="3f17", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihpP1505.dl > $tempnode'"
+#ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="3f17", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihpP1505.dl > $tempnode'"
 ## Own udev rule for HP Laserjet P1505n
-#ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="4017", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihpP1505.dl > $tempnode'"
+#ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="4017", RUN+="/bin/sh -c '/bin/cat /usr/share/foo2zjs/firmware/sihpP1505.dl > $tempnode'"
+#LABEL="foo2xxx_end"
 
 # with "hplip" and logging using systemd-journal
 # Own udev rule for HP Laserjet 1000
-ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="0517", \
+ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="0517", \
     RUN+="/usr/bin/systemd-cat -t hp-firmware -p5 /usr/bin/python2 /usr/bin/hp-firmware -n -y3 -s$env{BUSNUM}:$env{DEVNUM}"
 # Own udev rule for HP Laserjet 1005
-ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="1317", \
+ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="1317", \
     RUN+="/usr/bin/systemd-cat -t hp-firmware -p5 /usr/bin/python2 /usr/bin/hp-firmware -n -y3 -s$env{BUSNUM}:$env{DEVNUM}"
 # Own udev rule for HP Laserjet 1018
-ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="4117", \
+ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="4117", \
     RUN+="/usr/bin/systemd-cat -t hp-firmware -p5 /usr/bin/python2 /usr/bin/hp-firmware -n -y3 -s$env{BUSNUM}:$env{DEVNUM}"
 # Own udev rule for HP Laserjet 1020
-ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="2b17", \
+ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="2b17", \
     RUN+="/usr/bin/systemd-cat -t hp-firmware -p5 /usr/bin/python2 /usr/bin/hp-firmware -n -y3 -s$env{BUSNUM}:$env{DEVNUM}"
 # Own udev rule for HP Laserjet P1005
-ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="3d17", \
+ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="3d17", \
     RUN+="/usr/bin/systemd-cat -t hp-firmware -p5 /usr/bin/python2 /usr/bin/hp-firmware -n -y3 -s$env{BUSNUM}:$env{DEVNUM}"
 # Own udev rule for HP Laserjet P1006
-ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="3e17", \
+ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="3e17", \
     RUN+="/usr/bin/systemd-cat -t hp-firmware -p5 /usr/bin/python2 /usr/bin/hp-firmware -n -y3 -s$env{BUSNUM}:$env{DEVNUM}"
 # Own udev rule for HP Laserjet P1007
-ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="4817", \
+ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="4817", \
     RUN+="/usr/bin/systemd-cat -t hp-firmware -p5 /usr/bin/python2 /usr/bin/hp-firmware -n -y3 -s$env{BUSNUM}:$env{DEVNUM}"
 # Own udev rule for HP Laserjet P1008
-ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="4917", \
+ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="4917", \
     RUN+="/usr/bin/systemd-cat -t hp-firmware -p5 /usr/bin/python2 /usr/bin/hp-firmware -n -y3 -s$env{BUSNUM}:$env{DEVNUM}"
 # Own udev rule for HP Laserjet P1505
-ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="3f17", \
+ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="3f17", \
     RUN+="/usr/bin/systemd-cat -t hp-firmware -p5 /usr/bin/python2 /usr/bin/hp-firmware -n -y3 -s$env{BUSNUM}:$env{DEVNUM}"
 # Own udev rule for HP Laserjet P1505n
-ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="4017", \
+ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="4017", \
     RUN+="/usr/bin/systemd-cat -t hp-firmware -p5 /usr/bin/python2 /usr/bin/hp-firmware -n -y3 -s$env{BUSNUM}:$env{DEVNUM}"
 #
