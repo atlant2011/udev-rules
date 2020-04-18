@@ -7,7 +7,7 @@ for prn in $printers; do
     getweb $prn
     if [ -f $img ]; then
         arm2hpdl $img > $dl
-#        sudo cp $dl /usr/share/foo2zjs/firmware/$dl
-#        rm $img $dl
+        sudo cp $dl /usr/share/foo2zjs/firmware/$dl
+        rm $img $dl
     fi;
 done
